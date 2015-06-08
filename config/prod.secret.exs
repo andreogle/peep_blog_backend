@@ -9,5 +9,5 @@ config :peep_blog_backend, PeepBlogBackend.Endpoint,
 # Configure your database
 config :peep_blog_backend, PeepBlogBackend.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL") || "ecto://postgres:postgres@localhost/peep_blog_backend_prod"
+  url: System.get_env("DATABASE_URL") || "ecto://postgres:postgres@localhost/peep_blog_backend_prod",
   size: 20 # The amount of database connections in the pool
