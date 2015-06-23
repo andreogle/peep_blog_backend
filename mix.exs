@@ -35,6 +35,8 @@ defmodule PeepBlogBackend.Mixfile do
      {:phoenix_html, "~> 1.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
      {:plug_cors, "~> 0.7"},
-     {:cowboy, "~> 1.0"}]
+     {:poison, "~> 1.3"},
+     {:cowboy, "~> 1.0"},
+     {:phoenix_token_auth, ">= 0.0.0"},]
   end
 end

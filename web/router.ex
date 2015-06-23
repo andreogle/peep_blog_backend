@@ -1,5 +1,6 @@
 defmodule PeepBlogBackend.Router do
   use PeepBlogBackend.Web, :router
+  require PhoenixTokenAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -10,18 +11,23 @@ defmodule PeepBlogBackend.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug PlugCors, [origins: [System.get_env("FRONTEND_URL")]]
+    plug PlugCors, [origins: ["http://localhost:3000"]]
   end
 
-  # scope "/", PeepBlogBackend do
-  #   pipe_through :browser # Use the default browser stack
-  #
-  #   get "/", PageController, :index
-  # end
+  pipeline :authenticated do
+    plug PhoenixTokenAuth.Plug
+  end
 
-  # Other scopes may use custom stacks.
   scope "/", PeepBlogBackend do
     pipe_through :api
+    PhoenixTokenAuth.mount
+    
+    resources "/users", UserController
+  end
+
+  scope "/", PeepBlogBackend do
+    pipe_through :api
+    pipe_through :authenticated
 
     resources "/posts", PostController
     options "/posts*anything", PostController, :options
