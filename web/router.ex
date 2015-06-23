@@ -21,8 +21,8 @@ defmodule PeepBlogBackend.Router do
   scope "/", PeepBlogBackend do
     pipe_through :api
     PhoenixTokenAuth.mount
-    
-    resources "/users", UserController
+
+    # resources "/users", UserController
   end
 
   scope "/", PeepBlogBackend do

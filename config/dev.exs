@@ -33,3 +33,10 @@ config :peep_blog_backend, PeepBlogBackend.Repo,
   password: "postgres",
   database: "peep_blog_backend_dev",
   size: 10 # The amount of database connections in the pool
+
+config :phoenix_token_auth,
+  mailgun_domain: System.get_env("MAILGUN_DOMAIN"),
+  mailgun_key: System.get_env("MAILGUN_KEY")
+
+config :joken,
+  secret_key: "this is my super secret secret dev key"
